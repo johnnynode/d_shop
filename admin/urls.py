@@ -11,4 +11,9 @@ urlpatterns = [
     url(r'^users/del/(?P<uid>[0-9]+)$', users.delete, name="admin_users_del"),
     url(r'^users/edit/(?P<uid>[0-9]+)$', users.edit, name="admin_users_edit"),
     url(r'^users/update/(?P<uid>[0-9]+)$', users.update, name="admin_users_update"),
+
+    # 后台管理员路由
+    url(r'^login$', index.login, name="admin_login"),
+    url(r'^dologin$', index.dologin, name="admin_dologin"),
+    url(r'^logout$', index.logout, name="admin_logout"),
 ]
