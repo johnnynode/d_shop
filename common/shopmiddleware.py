@@ -12,17 +12,16 @@ class ShopMiddleware(object):
 
     def __call__(self, request):
         # 定义网站后台不用登录也可访问的路由url
-        urllist = ['/admin/login','/admin/dologin','/admin/logout']
+        urllist = ['/admin/login','/admin/dologin','/admin/logout', '/admin/verify']
         # 获取当前请求路径
         path = request.path
         #print("Hello World!"+path)
         # 判断当前请求是否是访问网站后台,并且path不在urllist中
-        if re.match("/admin",path) and (path not in urllist):
+        if re.match("/admin", path) and (path not in urllist):
             # 判断当前用户是否没有登录
             if "adminuser" not in request.session:
                 # 执行登录界面跳转
                 return redirect(reverse('admin_login'))
-
 
         response = self.get_response(request)
 

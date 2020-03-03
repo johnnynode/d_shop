@@ -16,4 +16,6 @@ urlpatterns = [
     url(r'^login$', index.login, name="admin_login"),
     url(r'^dologin$', index.dologin, name="admin_dologin"),
     url(r'^logout$', index.logout, name="admin_logout"),
+    url(r'^verify$', index.verify, name="admin_verify"), #验证码
+
 ]
