@@ -9,7 +9,7 @@ def index(request):
 
 # 会员登录表单
 def login(request):
-    return render(request,'myadmin/login.html')
+    return render(request,'admin/login.html')
 
 # 会员执行登录
 def dologin(request):
