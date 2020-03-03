@@ -1,10 +1,10 @@
-{% extends "myadmin/base.html" %}
+{% extends "admin/base.html" %}
 
 {% block mainbody %}                
     <h3>
         会员信息管理
     </h3>
-    <form id="edit-profile" action="{% url 'myadmin_users_update' user.id %}" class="form-horizontal" method="post">
+    <form id="edit-profile" action="{% url 'admin_users_update' user.id %}" class="form-horizontal" method="post">
         {% csrf_token %}
         <fieldset>
             <legend>编辑会员信息</legend>

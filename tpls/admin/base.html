@@ -8,7 +8,7 @@
         <link href="{% static 'admin/css/bootstrap.min.css' %}" rel="stylesheet">
         <link href="{% static 'admin/css/bootstrap-responsive.min.css' %}" rel="stylesheet">
         <link href="{% static 'admin/css/site.css' %}" rel="stylesheet">
-        <!--[if lt IE 9]><script src="{% static 'myadmin/js/html5.js' %}"></script><![endif]-->
+        <!--[if lt IE 9]><script src="{% static 'admin/js/html5.js' %}"></script><![endif]-->
     </head>
     <body>
         <div class="container">
@@ -89,10 +89,10 @@
                                 会员管理
                             </li>
                             <li>
-                                <a href="#"><i class="icon-folder-open"></i> 浏览会员</a>
+                                <a href="{% url 'admin_users_index' %}"><i class="icon-folder-open"></i> 浏览会员</a>
                             </li>
                             <li>
-                                <a href="#"><i class="icon-check"></i> 添加会员</a>
+                                <a href="{% url 'admin_users_add' %}"><i class="icon-check"></i> 添加会员</a>
                             </li>
                             <li class="nav-header">
                                 商品类别管理

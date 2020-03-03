@@ -1,4 +1,4 @@
-{% extends "myadmin/base.html" %}
+{% extends "admin/base.html" %}
 
 {% block mainbody %}                
     <h4>
@@ -26,8 +26,8 @@
                 <td>{{ vo.addtime|date:'Y-m-d H:i:s' }}</td>
                 <td>{{ vo.state }}</td>
                 <td>
-                    <a href="{% url 'myadmin_users_del' vo.id %}" class="view-link">删除</a>
-                    <a href="{% url 'myadmin_users_edit' vo.id %}" class="view-link">编辑</a>
+                    <a href="{% url 'admin_users_del' vo.id %}" class="view-link">删除</a>
+                    <a href="{% url 'admin_users_edit' vo.id %}" class="view-link">编辑</a>
                 </td>
             </tr>
             {% endfor %}

@@ -57,7 +57,7 @@ def edit(request,uid):
     try:
         ob = Users.objects.get(id=uid)
         context = {'user':ob}
-        return render(request,"myadmin/users/edit.html",context)
+        return render(request,"admin/users/edit.html",context)
     except Exception as err:
         print(err)
         context = {'info':'没有找到要修改的信息！'}
