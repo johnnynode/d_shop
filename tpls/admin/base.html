@@ -20,41 +20,7 @@
                         <div class="nav-collapse">
                             <ul class="nav">
                                 <li class="active">
-                                    <a href="index.html">首页</a>
-                                </li>
-                                <li>
-                                    <a href="settings.htm">在线设置</a>
-                                </li>
-                                <li>
-                                    <a href="help.htm">帮助</a>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="help.htm" class="dropdown-toggle" data-toggle="dropdown">更多 <b class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a href="help.htm">Introduction Tour</a>
-                                        </li>
-                                        <li>
-                                            <a href="help.htm">Project Organisation</a>
-                                        </li>
-                                        <li>
-                                            <a href="help.htm">Task Assignment</a>
-                                        </li>
-                                        <li>
-                                            <a href="help.htm">Access Permissions</a>
-                                        </li>
-                                        <li class="divider">
-                                        </li>
-                                        <li class="nav-header">
-                                            Files
-                                        </li>
-                                        <li>
-                                            <a href="help.htm">How to upload multiple files</a>
-                                        </li>
-                                        <li>
-                                            <a href="help.htm">Using file version</a>
-                                        </li>
-                                    </ul>
+                                    <a href="/">首页</a>
                                 </li>
                             </ul>
                             <form class="navbar-search pull-left" action="">
@@ -103,37 +69,16 @@
                             <li>
                                 <a href="{% url 'admin_type_add' 0 %}"><i class="icon-file"></i> 添加商品类别</a>
                             </li>
-                            <li class="nav-header">
-                                商品信息管理
-                            </li>
-                            <li>
-                                <a href="activity.htm"><i class="icon-list-alt"></i> 浏览商品信息</a>
-                            </li>
-                            <li>
-                                <a href="activity.htm"><i class="icon-list-alt"></i> 添加商品信息</a>
-                            </li>
                             <li class="divider">
                             </li>
                             <li class="nav-header">
                                 商品信息管理
                             </li>
                             <li>
-                                <a href="{% url 'admin_goods_index' %}"><i class="icon-list-alt"></i> 浏览商品信息</a>
+                                <a href="{% url 'admin_goods_index' 1 %}"><i class="icon-list-alt"></i> 浏览商品信息</a>
                             </li>
                             <li>
                                 <a href="{% url 'admin_goods_add' %}"><i class="icon-list-alt"></i> 添加商品信息</a>
-                            </li>
-                            <li>
-                                <a href="help.htm"><i class="icon-info-sign"></i> Help</a>
-                            </li>
-                            <li class="nav-header">
-                                Bonus Templates
-                            </li>
-                            <li>
-                                <a href="gallery.htm"><i class="icon-picture"></i> Gallery</a>
-                            </li>
-                            <li>
-                                <a href="blank.htm"><i class="icon-stop"></i> Blank Slate</a>
                             </li>
                         </ul>
                     </div><!-- 侧边导航结束 -->

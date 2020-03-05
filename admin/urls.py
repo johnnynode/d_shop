@@ -27,7 +27,7 @@ urlpatterns = [
     url(r'^type/update/(?P<tid>[0-9]+)$', type.update, name="admin_type_update"),
 
     # 后台商品信息管理
-    url(r'^goods$', goods.index, name="admin_goods_index"),
+    url(r'^goods/(?P<pIndex>[0-9]+)$', goods.index, name="admin_goods_index"),
     url(r'^goods/add$', goods.add, name="admin_goods_add"),
     url(r'^goods/insert$', goods.insert, name="admin_goods_insert"),
     url(r'^goods/del/(?P<gid>[0-9]+)$', goods.delete, name="admin_goods_del"),
