@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-# Create your views here.
+from django.shortcuts import redirect
+from django.core.urlresolvers import reverse
+
+from common.models import Users
 
 # =============商品展示========================
 def index(request):
@@ -25,10 +28,11 @@ def dologin(request):
     # 校验验证码
     verifycode = request.session['verifycode']
     code = request.POST['code']
+    # print('code: ' + code)
+    # print('verifycode: ' + verifycode)
     if verifycode != code:
         context = {'info':'验证码错误！'}
         return render(request,"web/login.html",context)
-
     try:
         #根据账号获取登录者信息
         user = Users.objects.get(username=request.POST['username'])
@@ -36,7 +40,7 @@ def dologin(request):
         if user.state == 0 or user.state == 1:
             # 验证密码
             import hashlib
-            m = hashlib.md5() 
+            m = hashlib.md5()
             m.update(bytes(request.POST['password'],encoding="utf8"))
             if user.password == m.hexdigest():
                 # 此处登录成功，将当前登录信息放入到session中，并跳转页面
