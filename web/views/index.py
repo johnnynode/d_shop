@@ -52,7 +52,7 @@ def dologin(request):
             context = {'info':'此用户为非法用户！'}
     except:
         context = {'info':'登录账号错误！'}
-    return render(request,"web/login.html",context)
+    return render(request,"web/login.html", context)
 
 def logout(request):
     '''会员退出'''
