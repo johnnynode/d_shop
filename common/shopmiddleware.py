@@ -23,6 +23,13 @@ class ShopMiddleware(object):
                 # 执行登录界面跳转
                 return redirect(reverse('admin_login'))
 
+        # 网站前台登录用户判断（订单操作和会员中心操作需登录）
+        if re.match("^/orders",path) or re.match("^/vip",path):
+            # 判断当前用户是否没有登录
+            if "vipuser" not in request.session:
+                # 执行登录界面跳转
+                return redirect(reverse('login'))
+
         response = self.get_response(request)
 
         # Code to be executed for each request/response after

@@ -141,10 +141,14 @@ function allSelect(){
       $('.cart-col-select .mz-checkbox').removeClass('checked');
       aee = false;
     }
+    loadTotal();
   })
 
   //单选
   $('.cart-col-select .mz-checkbox').click(function(){
+    $(this).toggleClass("checked");
+    loadTotal();
+    /*
     if(see==false){
       $(this).addClass('checked');
       see = true;
@@ -152,7 +156,25 @@ function allSelect(){
       $(this).removeClass('checked');
       see = false;
     }
+    */
   })
+}
+
+//计算商品数量和总金额
+function loadTotal(){
+    var ids = [];
+    //alert('ok');
+    //获取所有选择的商品
+    var list = $("table.cart-merchant-body div.mz-checkbox").filter(".checked");
+    $("#totalCount").html(list.length);
+    var total = 0.0;
+    for(var i=0;i<list.length;i++){
+       total += parseFloat($(list[i]).attr('price'));
+       ids.push($(list[i]).attr('gid'));
+    }
+    //alert(total);
+    $("#totalPrice").html(total);
+    return ids;
 }
 
 // 数量增加减少
@@ -382,7 +404,4 @@ function nLogin(){
           console.log(v)
      })
 }
-
-
-
 /*---------------------------------------------------*/ 

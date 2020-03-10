@@ -30,7 +30,7 @@
     {% endblock %}
 
     <script type="text/javascript" src="{% static 'web/js/rem.js' %}"></script>
-    <script type="text/javascript" src="{% static 'web/js/topNav.js' %}"></script>
+    <script type="text/javascript" src="{% static 'web/js/topNav.js' %}?id=12343456"></script>
 
 </head>
 <body>
@@ -74,9 +74,11 @@
                 </div>
             </li>
             <li class="layout-header-service-item layout-header-service-cart" id="layoutHeaderCart">
-                <a class="layout-header-service-link" href="{% url 'cart_index' %}" data-mtype="wmz_public_yt_cart">
+                <a class="layout-header-service-link" href="{% url 'cart_index'%}" data-mtype="wmz_public_yt_cart">
                     <i class="glyphicon glyphicon-shopping-cart"></i>
-                    <span class="layout-header-service-cart-num">{{ request.session.shoplist|length}}</span>
+                    <span class="layout-header-service-cart-num">
+                      {{request.session.shoplist.values|length}}
+                    </span>
                 </a>
             </li>
           </ul>
@@ -85,8 +87,8 @@
               <a href="{% url 'index' %}" class="layout-header-nav-link">商城首页 </a><p class="line-top hidden-xs"></p>
             </li>
             <li class="layout-header-nav-item">
-              <a href="{% url 'list' %}" class="layout-header-nav-link">全部商品</a>
-            </li>
+                <a href="{% url 'list' %}" class="layout-header-nav-link">全部商品</a>
+              </li>
             {% for type in typelist %}
               <li class="layout-header-nav-item">
                 <a href="{% url 'list' %}?tid={{type.id}}" class="layout-header-nav-link">{{type.name}}</a>
@@ -342,8 +344,6 @@
     </div>
   </div><!-- 返回顶部 E-->
           
-
-
   <script type="text/javascript">
   //回顶部
    backTop();

@@ -76,7 +76,6 @@
                 </td>
                 <td class="cart-col-total col-md-1 hidden-xs hidden-sm">
                   <span class="cart-product-price total">{% widthratio  shop.price 1 shop.m %}</span>
-
                 </td>
                 <td class="cart-col-ctrl col-md-1 hidden-xs hidden-sm">
                   <a href="{% url 'cart_del' shop.id %}" title="删除">
@@ -129,7 +128,7 @@
     //topLogin();
     //商品数量加减
     //cartAddMin()
-    //loadTotal();
+    loadTotal();
 
     var gidlist = [];
 {% endblock %}
