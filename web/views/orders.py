@@ -21,7 +21,7 @@ def add(request):
     ids = request.GET.get("ids",'')
     if len(ids) == 0:
         context = {"info":"请选择要结算的商品！"}
-        return render(request,"web/ordersinfo.html",context)
+        return render(request,"web/orders/info.html",context)
     gidlist = ids.split(',')
 
     # 从购物车获取要结算所有商品，并放入到orderslist中，并且累计总金额
@@ -34,11 +34,11 @@ def add(request):
     # 将这些信息放入到session中
     request.session['orderslist'] = orderslist
     request.session['total'] = total
-    return render(request,"web/ordersadd.html",context)
+    return render(request,"web/orders/add.html",context)
 
 def confirm(request):
     context = loadinfo(request)
-    return render(request,"web/ordersconfirm.html",context)
+    return render(request,"web/orders/confirm.html",context)
 
 def insert(request):
     context = loadinfo(request)
@@ -71,8 +71,8 @@ def insert(request):
         del request.session['total']
         request.session['shoplist'] = shoplist
         context = {"info":"订单添加成功！订单号："+str(od.id)}
-        return render(request,"web/ordersinfo.html",context)
+        return render(request,"web/orders/info.html",context)
     except Exception as err:
         print(err)
         context = {"info":"订单添加失败，请稍后再试！"}
-        return render(request,"web/ordersinfo.html",context)
+        return render(request,"web/orders/info.html",context)
