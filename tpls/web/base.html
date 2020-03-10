@@ -57,7 +57,7 @@
                       <a href="#" class="layout-user-downmenu-link" data-mtype="wmz_public_grzx_myorder">个人中心</a>
                     </li>
                     <li class="layout-user-downmenu-item">
-                      <a href="#" class="layout-user-downmenu-link" data-mtype="wmz_public_grzx_myorder">我的订单</a>
+                      <a href="{% url 'vip_orders' %}" class="layout-user-downmenu-link" data-mtype="wmz_public_grzx_myorder">我的订单</a>
                     </li>
                     <li class="layout-user-downmenu-item">
                       <a href="{% url 'logout' %}" class="layout-user-downmenu-link" data-mtype="wmz_public_grzx_mformy">退出</a>
@@ -344,6 +344,8 @@
     </div>
   </div><!-- 返回顶部 E-->
           
+
+
   <script type="text/javascript">
   //回顶部
    backTop();
