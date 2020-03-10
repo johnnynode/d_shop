@@ -40,12 +40,12 @@
       <div class="container clearfix">
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <div class="layout-header-logo navbar-left">
-              <a target="_blank" href="./index.html" class="layout-header-logo-link" alt="魅族科技">
+              <a href="{% url 'index' %}" class="layout-header-logo-link" alt="魅族科技">
                 <img src="{% static 'web/img/logo.png' %}">
               </a>
           </div>
           <ul class="nav navbar-nav navbar-right layout-header-service clearfix">
-            <li class="layout-header-service-item" id="layoutHeaderUser">
+              <li class="layout-header-service-item" id="layoutHeaderUser">
                 <a class="layout-header-service-link g-user" style="background: #fff;width:auto;" href="#">
                   <i class="glyphicon glyphicon-user"></i>
                   <span>{{request.session.vipuser.name}}</span>
@@ -70,12 +70,6 @@
                       <a href="#" target="_blank" class="layout-user-downmenu-link" data-mtype="wmz_public_grzx_register">立即注册</a>
                     </li>
                   {% endif %}
-                    <li class="layout-user-downmenu-item">
-                        <a href="#" class="layout-user-downmenu-link" data-mtype="wmz_public_grzx_myorder">我的订单</a>
-                    </li>
-                    <li class="layout-user-downmenu-item">
-                        <a href="#" class="layout-user-downmenu-link" data-mtype="wmz_public_grzx_mformy">M码通道</a>
-                    </li>
                   </ul>
                 </div>
             </li>
@@ -88,17 +82,16 @@
           </ul>
           <ul class="nav navbar-nav navbar-right layout-header-nav clearfix">
             <li class="layout-header-nav-item">
-              <a href="./index.html" class="layout-header-nav-link">魅族商城 </a><p class="line-top hidden-xs"></p>
+              <a href="{% url 'index' %}" class="layout-header-nav-link">商城首页 </a><p class="line-top hidden-xs"></p>
             </li>
             <li class="layout-header-nav-item">
-              <a href="./list.html" class="layout-header-nav-link">魅族手机</a>
+              <a href="{% url 'list' %}" class="layout-header-nav-link">全部商品</a>
             </li>
-            <li class="layout-header-nav-item"><a href="./list.html" class="layout-header-nav-link">魅蓝手机</a></li>
-            <li class="layout-header-nav-item"><a href="./list.html" class="layout-header-nav-link">魅族声学</a></li>
-            <li class="layout-header-nav-item"><a href="#" class="layout-header-nav-link">智能·配件</a></li>
-            <li class="layout-header-nav-item"><a href="#" class="layout-header-nav-link">服务</a></li>
-            <li class="layout-header-nav-item"><a href="#" class="layout-header-nav-link">专卖店</a></li>
-            <li class="layout-header-nav-item"><a href="#" class="layout-header-nav-link">Flyme</a></li>
+            {% for type in typelist %}
+              <li class="layout-header-nav-item">
+                <a href="{% url 'list' %}?tid={{type.id}}" class="layout-header-nav-link">{{type.name}}</a>
+              </li>
+            {% endfor %}
             <li class="layout-header-nav-item"><a href="#" class="layout-header-nav-link">社区</a></li>                          
           </ul>           
         </div>
@@ -106,6 +99,7 @@
       </div>
      <!-- /.container-fluid -->
      <!-- 鼠标经过出现内容 -->
+     <!--
      <div class="layout-header-nav-child">
        <div class="container">
          <ul class="layout-header-nav-child-list first" >
@@ -178,6 +172,7 @@
          </ul>
        </div>
      </div>
+   -->
     </nav>
     <!-- 移动端结构 -->
     <div class="scroll-view">
@@ -258,7 +253,7 @@
             </ul>
               <div class="layout-footer-contact">
                     <p class="layout-footer-contact-desc">24小时全国服务热线</p>
-                    <a href="tel:400-788-3333" class="layout-footer-contact-tel">400-788-3333</a>
+                    <a href="tel:400-788-3333" class="layout-footer-contact-tel">000-888-6666</a>
                     <p>
                           <a href="javascript:void(0);" class="layout-footer-contact-online">
                                 <i class="layout-font layout-font-talk1"></i><span class="text">在线客服</span>
@@ -295,12 +290,12 @@
             </ul>
             <div class="layout-footer-copyright clearfix">
                     <span class="layout-footer-copyright-left">
-                          <a class="layout-footer-copyright-link copyright-text">&copy;2017 Meizu Telecom Equipment Co., Ltd. All rights reserved.</a>
-                          <a class="layout-footer-copyright-link" hidefocus="true" href="#" target="_blank">粤ICP备13003602号-2</a>
-                          <a class="layout-footer-copyright-link" hidefocus="true" href="#" target="_blank">合字B2-20170010</a>
+                          <a class="layout-footer-copyright-link copyright-text">&copy;2018 Meizu Telecom Equipment Co., Ltd. All rights reserved.</a>
+                          <a class="layout-footer-copyright-link" hidefocus="true" href="#" target="_blank">京ICP备123456789号-3</a>
+                          <a class="layout-footer-copyright-link" hidefocus="true" href="#" target="_blank">合字A1-20280312</a>
                           <a class="layout-footer-copyright-link" hidefocus="true" href="#" target="_blank">营业执照</a>
                           <a class="layout-footer-copyright-link" hidefocus="true" href="3" target="_blank">法律声明</a>
-                          <a class="layout-footer-copyright-link">粤公网安备 44049102496009 号</a>
+                          <a class="layout-footer-copyright-link">京公网安备 6666666666666 号</a>
                           <a class="layout-footer-copyright-link" hidefocus="true" href="#" rel="nofollow" target="_blank">
                             <i class="layout-icon layout-icon-license"></i>
                           </a>
