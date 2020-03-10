@@ -4,62 +4,52 @@ from django.shortcuts import redirect
 from django.core.urlresolvers import reverse
 
 from common.models import Users
-import time,json
-
 # Create your views here.
-
-# 后台首页
 def index(request):
+    '''管理后台首页'''
     return render(request,"admin/index.html")
 
-# 会员登录表单
 def login(request):
-    return render(request,'admin/login.html')
+    '''加载登录页面'''
+    return render(request,"admin/login.html")
 
 def dologin(request):
+    '''执行登录'''
+    #验证判断
     verifycode = request.session['verifycode']
     code = request.POST['code']
     if verifycode != code:
         context = {'info':'验证码错误！'}
         return render(request,"admin/login.html",context)
+
     try:
-        #根据账号获取登录者信息
-        username = request.POST['username']
-        password = request.POST['password']
-        # print(username)
-        # print(password)
-        user = Users.objects.get(username=username)
-        #判断当前用户是否是后台管理员用户
+        #根据登录账号获取用户信息
+        user = Users.objects.get(username=request.POST['username'])
+        # 校验当前用户状态是否是管理员
         if user.state == 0:
-            # 验证密码
+            #获取密码并md5
             import hashlib
-            m = hashlib.md5()
-            m.update(bytes(password,encoding="utf8"))
-            # print(m.hexdigest())
-            # 数据库与参数进行对比
+            m = hashlib.md5() 
+            m.update(bytes(request.POST['password'],encoding="utf8"))
+            # 校验密码是否正确
             if user.password == m.hexdigest():
-                # 此处登录成功，将当前登录信息放入到session中，并跳转页面
-                request.session['adminuser'] = user.name
-                #print(json.dumps(user))
+                # 将当前登录成功用户信息以adminuser这个key放入到session中
+                request.session['adminuser']=user.toDict()
                 return redirect(reverse('admin_index'))
             else:
-                context = {'info':'登录密码错误！'}
+                context={"info":"登录密码错误！"}
         else:
-            context = {'info':'此用户非后台管理用户！'}
-    except:
-        context = {'info':'登录账号错误！'}
+            context={"info":"此用户非后台管理账号！"}
+    except Exception as err:
+        print(err)
+        context={"info":"登录账号不存在！"}
     return render(request,"admin/login.html",context)
 
-# 会员退出
 def logout(request):
-    # 清除登录的session信息
+    '''执行退出'''
     del request.session['adminuser']
-    # 跳转登录页面（url地址改变）
     return redirect(reverse('admin_login'))
-    # 加载登录页面(url地址不变)
-    #return render(request,"admin/login.html")
 
-# 验证码
 def verify(request):
     #引入随机函数模块
     import random
@@ -81,20 +71,21 @@ def verify(request):
         draw.point(xy, fill=fill)
     #定义验证码的备选值
     str1 = 'ABCD123EFGHIJK456LMNOPQRS789TUVWXYZ0'
+    #str1 = '0123456789'
     #随机选取4个值作为验证码
     rand_str = ''
     for i in range(0, 4):
         rand_str += str1[random.randrange(0, len(str1))]
     #构造字体对象，ubuntu的字体路径为“/usr/share/fonts/truetype/freefont”
-    font = ImageFont.truetype('static/assets/fonts/STHeiti Light.ttc', 21)
+    font = ImageFont.truetype('static/admin/fonts/STHeiti Light.ttc', 21)
     #font = ImageFont.load_default().font
     #构造字体颜色
     fontcolor = (255, random.randrange(0, 255), random.randrange(0, 255))
     #绘制4个字
-    draw.text((5, 2), rand_str[0], font=font, fill=fontcolor)
-    draw.text((25, 2), rand_str[1], font=font, fill=fontcolor)
-    draw.text((50, 2), rand_str[2], font=font, fill=fontcolor)
-    draw.text((75, 2), rand_str[3], font=font, fill=fontcolor)
+    draw.text((5, -3), rand_str[0], font=font, fill=fontcolor)
+    draw.text((25, -3), rand_str[1], font=font, fill=fontcolor)
+    draw.text((50, -3), rand_str[2], font=font, fill=fontcolor)
+    draw.text((75, -3), rand_str[3], font=font, fill=fontcolor)
     #释放画笔
     del draw
     #存入session，用于做进一步验证
