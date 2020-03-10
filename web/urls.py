@@ -1,6 +1,6 @@
 from django.conf.urls import url
 
-from web.views import index
+from web.views import index,cart
 
 urlpatterns = [
     # 前台首页
@@ -13,4 +13,11 @@ urlpatterns = [
     url(r'^login$', index.login, name="login"),
     url(r'^dologin$', index.dologin, name="dologin"),
     url(r'^logout$', index.logout, name="logout"),
+
+    # 购物车路由
+    url(r'^cart$', cart.index,name='cart_index'), #浏览购物车
+    url(r'^cart/add/(?P<gid>[0-9]+)$', cart.add,name='cart_add'), #添加购物车
+    url(r'^cart/del/(?P<gid>[0-9]+)$', cart.delete,name='cart_del'), #从购物车中删除一个商品
+    url(r'^cart/clear$', cart.clear,name='cart_clear'), #清空购物车
+    url(r'^cart/change$', cart.change,name='cart_change'), #更改购物车中商品数量
 ]
