@@ -36,7 +36,6 @@ def index(request,pIndex=1):
         pIndex = 1
     list2 = page.page(pIndex) #当前页数据
     plist = page.page_range   #页码数列表
-    
 
     #封装信息加载模板输出
     context = {"userslist":list2,'plist':plist,'pIndex':pIndex,'maxpages':maxpages,'mywhere':mywhere}

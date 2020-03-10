@@ -21,6 +21,7 @@ class Users(models.Model):
 
     class Meta:
         db_table = "users"  # 更改表名
+        ordering = ["id"]
     
 #商品类别信息模型
 class Types(models.Model):
