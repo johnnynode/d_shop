@@ -29,27 +29,22 @@
             </tr>
             {% endfor %}
         </tbody>
-    </table>                
+    </table>     
     <div class="pagination">
         <ul>
-            <li class="disabled">
-                <a href="#">&laquo;</a>
-            </li>
-            <li class="active">
-                <a href="#">1</a>
-            </li>
             <li>
-                <a href="#">2</a>
+                <a href="{% url 'admin_type_index' pIndex|add:-1 %}">&laquo;</a>
             </li>
+            {% for p in plist %}
+            <li {% if pIndex == p %}class="active"{% endif %}>
+                <a href="{% url 'admin_type_index' p %}">{{p}}</a>
+            </li>
+            {% endfor %}
             <li>
-                <a href="#">3</a>
+                <a href="{% url 'admin_type_index' pIndex|add:1 %}">&raquo;</a>
             </li>
-            <li>
-                <a href="#">4</a>
-            </li>
-            <li>
-                <a href="#">&raquo;</a>
-            </li>
+    
         </ul>
-    </div>
+    </div>    
+
 {% endblock %}
