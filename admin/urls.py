@@ -23,7 +23,7 @@ urlpatterns = [
     url(r'^users/doresetpass/(?P<uid>[0-9]+)$', users.doresetpass, name="admin_users_doresetpass"),
 
      # 商品类别信息管理路由
-    url(r'^type/(?P<pIndex>[0-9]+)$', type.index, name="admin_type_index"),
+    url(r'^type$', type.index, name="admin_type_index"),
     url(r'^type/add/(?P<tid>[0-9]+)$', type.add, name="admin_type_add"),
     url(r'^type/insert$', type.insert, name="admin_type_insert"),
     url(r'^type/del/(?P<tid>[0-9]+)$', type.delete, name="admin_type_del"),

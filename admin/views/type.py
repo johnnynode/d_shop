@@ -5,10 +5,6 @@ from django.core.urlresolvers import reverse
 
 from common.models import Types
 
-from django.db.models import Q
-from django.core.paginator import Paginator
-from datetime import datetime
-
 # 浏览商品类别信息
 def index(request, pIndex=1):
     # 执行数据查询，并放置到模板中
@@ -18,21 +14,9 @@ def index(request, pIndex=1):
     for ob in list:
         ob.pname ='. . . '*(ob.path.count(',')-1)
         # print(list[0].__dict__)
-    
-    #执行分页处理
-    pIndex = int(pIndex)
-    page = Paginator(list,5) #以5条每页创建分页对象
-    maxpages = page.num_pages #最大页数
-    #判断页数是否越界
-    if pIndex > maxpages:
-        pIndex = maxpages
-    if pIndex < 1:
-        pIndex = 1
-    list2 = page.page(pIndex) #当前页数据
-    plist = page.page_range   #页码数列表
 
     #封装信息加载模板输出
-    context = {"typeslist":list2,'plist':plist,'pIndex':pIndex,'maxpages':maxpages}
+    context = {"typeslist":list}
     return render(request,"admin/type/index.html",context)
 
 # 商品类别信息添加表单
