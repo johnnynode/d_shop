@@ -12,16 +12,6 @@ import time,json,os
 
 # 浏览商品信息
 def index(request, pIndex):
-    '''
-    # 执行数据查询，并放置到模板中
-    list = Goods.objects.all()
-    for ob in list:
-        ty = Types.objects.get(id=ob.typeid)
-        ob.typename = ty.name
-    context = {"goodslist":list}
-    return render(request,'admin/goods/index.html',context)
-    '''
-
     '''浏览信息'''
     #获取商品类别信息
     tlist = Types.objects.extra(select={'_has':'concat(path,id)'}).order_by('_has')

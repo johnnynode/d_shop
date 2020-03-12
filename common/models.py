@@ -51,6 +51,7 @@ class Goods(models.Model):
 
     class Meta:
         db_table = "goods"  # 更改表名
+        ordering = ["id"] # 排序
 
 # 订单模型
 class Orders(models.Model):
